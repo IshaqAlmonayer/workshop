@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import Button from '../components/button'
+import Form from './Form'
 
 function App() {
   return (
-    <div>
-      <Button>Button</Button>
+    <div className="container">
+      <Form></Form>
     </div>
   );
 }

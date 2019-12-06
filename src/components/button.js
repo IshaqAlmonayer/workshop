@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
+import './button.css';
 
-function Button() {
+function Button(props) {
   return (
-    <button type="submit" style={{width : "100px", height:"50px", borderRadius: "10px", backgroundColor:"#66ccff",
-                   margin: "10px" }} > Button</button>
+    <button type="submit" className="button" > {props.name} </button>
   );
 }
 

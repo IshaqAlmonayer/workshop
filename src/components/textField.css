@@ -1,0 +1,14 @@
+.search{
+    width: 250px;
+    height: 40px;
+    font-size: 15px;
+    border:1px solid #dddddd;
+}
+
+.nameField{
+    width: 250px;
+    height: 20px;
+    font-size: 15px;
+    border:1px solid #dddddd;
+    padding-left: 10px;
+}

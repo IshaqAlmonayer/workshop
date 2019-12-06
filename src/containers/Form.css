@@ -1,0 +1,43 @@
+.header {
+    font-size: 40px;
+    margin: 0px;
+    margin-bottom: 40px;
+}
+
+table{
+    table-layout: auto;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    box-shadow: 0 0 20px 10px #dddddd;
+}
+
+td, th {
+    border-collapse: collapse;
+    border: 1px solid #dddddd;
+    background-color: #ffffff;
+}
+
+.laregeText{
+    font-size: 1.2em;
+    color: #521088;
+    text-decoration: underline;
+    margin-bottom: 0px;
+}
+
+.smallText{
+    font-size: 1em;
+    color: #8a8a8a;
+    margin-top: 0px;
+}
+
+.number{
+    font-size: 1.5em;
+}
+
+.nameTableField{
+    padding: 5px;
+}
+
+.greenField{
+    background-color: #60c737;
+}
