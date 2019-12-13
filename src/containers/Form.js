@@ -2,12 +2,34 @@ import React from 'react';
 import Button from '../components/button'
 import TextField from '../components/textField'
 import './Form.css';
+import { connect } from 'react-redux';
+import Axios from 'axios';
 
-function Form() {
+const get_venues = () => {
+    Axios.get('https://api.foursquare.com/v2/venues/explore', {
+      params: {
+        client_id: 'GH4BWS2A1V0K0RAIGWA401NNQ04JUIF55HUTP30LQ1IKINUL',
+        client_secret: 'NRTY31TIGPDGK5GWODTMDKTQL1JTW1VKLWHWZJR425E03WSN',
+        v: 20120610,
+        limit: 10,
+        near: 'amman',
+        query: 'lunch',
+      }
+    }).then((response) => {
+        let venues = response.data.response.groups[0].items;
+        console.log(venues);
+        // venues.map((venue)=>(
+        //     console.log(venue.venue)
+        // ));
+    });
+}
+
+function Form(props) {
     return (
         <div>
+            {get_venues()}
             <p className="header"> Lunchplace </p>
-            <div style={{paddingBottom:"20px"}}>
+            <div style={{ paddingBottom: "20px" }}>
                 <TextField placeholder="10999 Berlin" class="search"></TextField> <span style={{ margin: "10px" }}></span>
                 <Button name={"Search"} ></Button>
             </div>
@@ -16,21 +38,13 @@ function Form() {
                     <td valign="bottom" style={{ textAlign: "left", paddingLeft: "10px" }} >
                         <p className="smallText" >Participants</p>
                     </td>
-                    <td style={{ textAlign: "center", padding: "30px" }}>
-                        <b className="laregeText" >Falafel in Berlin</b>
-                        <p className="smallText" >Falafel Restaurant</p>
-                        <b className="number" >6</b>
-                    </td>
-                    <td style={{ textAlign: "center", padding: "30px" }}>
-                        <b className="laregeText" >Baraka</b>
-                        <p className="smallText" >Turkish Restaurant</p>
-                        <b className="number" >7.8</b>
-                    </td>
-                    <td style={{ textAlign: "center", padding: "30px" }}>
-                        <b className="laregeText" >McDonalds</b>
-                        <p className="smallText" >Gourmet Restaurant</p>
-                        <b className="number" >9.8</b>
-                    </td>
+                    {props.restaurants.map((restaurant) =>
+                        <td style={{ textAlign: "center", padding: "30px" }}>
+                            <b className="laregeText" >{restaurant.name}</b>
+                            <p className="smallText" >{restaurant.type}</p>
+                            <b className="number" >{restaurant.rating}</b>
+                        </td>
+                    )}
                 </tr>
                 <tr>
                     <td className="nameTableField" >
@@ -95,4 +109,9 @@ function Form() {
     );
 }
 
-export default Form;
+const mapStateToProps = (state) => ({
+    venues: state.venues,
+    restaurants: state.resturaunt
+})
+
+export default connect(mapStateToProps)(Form);
